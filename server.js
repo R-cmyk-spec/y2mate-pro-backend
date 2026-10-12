@@ -1,4 +1,5 @@
- const http = require("http");
+
+const http = require("http");
 
 const server = http.createServer((req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -15,6 +16,16 @@ const server = http.createServer((req, res) => {
     return res.end(JSON.stringify({
       success: true,
       message: "Y2Mate Pro backend is running!"
+    }));
+  }
+
+  if (req.url === "/api/download" && req.method === "GET") {
+    res.writeHead(200);
+    return res.end(JSON.stringify({
+      success: true,
+      message: "Download endpoint is responding.",
+      downloadEnabled: false,
+      note: "Actual authorized file downloading is not configured yet."
     }));
   }
 
